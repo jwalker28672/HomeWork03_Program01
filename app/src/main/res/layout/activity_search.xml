@@ -40,9 +40,9 @@
 
     <EditText
         android:id="@+id/et_v_search_fName"
-        android:layout_width="wrap_content"
+        android:layout_width="214dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="17dp"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="84dp"
         android:ems="10"
         android:inputType="text"
@@ -52,10 +52,10 @@
 
     <EditText
         android:id="@+id/et_v_search_lName"
-        android:layout_width="wrap_content"
+        android:layout_width="214dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="148dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="144dp"
         android:ems="10"
         android:inputType="text"
         android:textSize="20sp"
@@ -97,10 +97,10 @@
 
     <EditText
         android:id="@+id/et_v_search_uName"
-        android:layout_width="wrap_content"
+        android:layout_width="214dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="212dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="213dp"
         android:ems="10"
         android:inputType="text"
         android:textSize="20sp"
@@ -113,7 +113,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="284dp"
-        android:text="Gpa <"
+        android:text="Major:"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -124,33 +124,21 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="352dp"
-        android:text="Gpa >"
+        android:text="Gpa:"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/et_v_search_gpaLessThan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="68dp"
-        android:layout_marginTop="273dp"
+        android:id="@+id/et_v_search_gpa"
+        android:layout_width="200dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="342dp"
         android:ems="10"
         android:inputType="text"
         android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/textView8"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/et_v_search_gpaGreaterThan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="341dp"
-        android:ems="10"
-        android:inputType="text"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/textView9"
+        app:layout_constraintStart_toEndOf="@+id/sp_v_Search_operatorDropDown"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
@@ -162,5 +150,34 @@
         android:text="Search"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/sp_v_Search_operatorDropDown"
+        android:layout_width="85dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="342dp"
+        app:layout_constraintStart_toEndOf="@+id/textView9"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_v_Search_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="408dp"
+        android:text="Back"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/sp_v_Search_majorDropDown"
+        android:layout_width="214dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="274dp"
+        app:layout_constraintStart_toEndOf="@+id/textView8"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

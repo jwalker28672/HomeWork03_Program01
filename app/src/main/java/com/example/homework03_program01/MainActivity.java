@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         intent_j_search         = new Intent(MainActivity.this,Search.class);
 
         addStudentButtonListener();
-        //searchButtonListener();
+        searchButtonListener();
         listViewClickerListener();
         listViewLongClickListener();
         fillStudentListView();
@@ -67,8 +67,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
             {
-                String name;
-
                 SessionData.setCurrentSelectedStudent(listOfStudents.get(i).getuName());
 
                 startActivity(intent_j_StudentDetails);

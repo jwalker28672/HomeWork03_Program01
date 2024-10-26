@@ -19,7 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
     public DatabaseHelper(Context c)
     {
-        super(c,database_name,null,1);
+        super(c,database_name,null,2);
     }
 
     @Override
@@ -105,7 +105,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
         {
             SQLiteDatabase db = this.getWritableDatabase();
 
-            db.execSQL("INSERT INTO " + majors_table_name + "(majorName, majorPrefix) VALUES ('Mechanical engineering', 'ENG');");
+            db.execSQL("INSERT INTO " + majors_table_name + "(majorName, majorPrefix) VALUES ('Mechanical Engineering', 'ENG');");
             db.execSQL("INSERT INTO " + majors_table_name + "(majorName, majorPrefix) VALUES ('Psychology', 'PSY');");
             db.execSQL("INSERT INTO " + majors_table_name + "(majorName, majorPrefix) VALUES ('Early Childhood Education', 'EDU');");
             db.execSQL("INSERT INTO " + majors_table_name + "(majorName, majorPrefix) VALUES ('Game Development', 'CIS');");
@@ -321,13 +321,23 @@ public class DatabaseHelper extends SQLiteOpenHelper
     }
 
     @SuppressLint("Range")
-    public ArrayList<String> searchDatabaseGivenFName (String f, String l)
+    public ArrayList<Student> searchDatabase (String u, String f, String l, String m, String g, int op)
     {
-        ArrayList <String> listOfStudents = new ArrayList<String>();
 
-        String selectStatement = "SELECT * FROM " + students_table_name + "WHERE ";
+        ArrayList<Student> listOfStudents = new ArrayList<Student>();
 
-        if (f == "")
+        String selectStatement = "Select * from " + students_table_name + " Where ";
+
+        if(u.isEmpty())
+        {
+            selectStatement += "uName is not null";
+        }
+        else
+        {
+            selectStatement += "uName = '" + u + "' ";
+        }
+        selectStatement += " AND ";
+        if(f.isEmpty())
         {
             selectStatement += "fName is not null ";
         }
@@ -335,15 +345,38 @@ public class DatabaseHelper extends SQLiteOpenHelper
         {
             selectStatement += "fName = '" + f + "' ";
         }
-
-        if (l == "")
+        selectStatement += " AND ";
+        if(l.isEmpty())
         {
             selectStatement += "lName is not null ";
         }
         else
         {
-            selectStatement += "lName = '" + f + "' ";
+            selectStatement += "lName = '" + l + "' ";
         }
+        selectStatement += " AND ";
+        if(m.isEmpty())
+        {
+            selectStatement += "major is not null ";
+        }
+        else
+        {
+            selectStatement += "major = '" + m + "' ";
+        }
+        selectStatement += " AND ";
+        if (g.isEmpty())
+        {
+            selectStatement += "gpa is not null ";
+        }
+        else if(op == 0)
+        {
+            selectStatement += "gpa < '" + g + "' ";
+        }
+        else if (op == 1)
+        {
+            selectStatement += "gpa > '" + g + "' ";
+        }
+
 
         selectStatement += ";";
 
@@ -351,25 +384,22 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
         Cursor cursor = db.rawQuery(selectStatement, null);
 
-        String uName;
-        String fName;
-        String lName;
-
-        if(cursor.moveToFirst())
+        while(cursor.moveToNext())
         {
-            do
-            {
-                uName = cursor.getString(cursor.getColumnIndex("uName"));
-                fName = cursor.getString(cursor.getColumnIndex("fName"));
-                lName = cursor.getString(cursor.getColumnIndex("lName"));
+            Student s = new Student();
 
-                String info = uName + " " + fName + " " + lName;
+            s.setuName(cursor.getString(cursor.getColumnIndex("uName")));
+            s.setfName(cursor.getString(cursor.getColumnIndex("fname")));
+            s.setlName(cursor.getString(cursor.getColumnIndex("lName")));
+            s.setEmail(cursor.getString(cursor.getColumnIndex("email")));
+            s.setMajor(cursor.getString(cursor.getColumnIndex("major")));
+            s.setAge(cursor.getInt(cursor.getColumnIndex("age")));
+            s.setGpa(cursor.getFloat(cursor.getColumnIndex("gpa")));
 
-                listOfStudents.add(info);
-            }
-            while (cursor.moveToNext());
+            listOfStudents.add(s);
 
         }
+
 
         db.close();
         return listOfStudents;
