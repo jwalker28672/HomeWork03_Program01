@@ -38,6 +38,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
         onCreate(db);
     }
 
+    //all 3 of the following functions were used for debugging purpose only
     public String getStudentdb()
     {
         return  students_table_name;
@@ -116,7 +117,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
         }
     }
 
-
+    //used to see if the either of the tables had no records
     public int countRecordsFromTable(String tableName)
     {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -159,6 +160,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
         return listOfStudents;
     }
 
+    //used for debugging purposes
     public ArrayList<Major> getAllMajorData()
     {
         ArrayList<Major> listOfMajors = new ArrayList<>();
@@ -184,7 +186,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
         return listOfMajors;
     }
-
+    //get all major names to populate spinners
     public ArrayList<String> getAllMajorNames()
     {
         ArrayList<String> listOfMajorNames = new ArrayList<>();
@@ -320,6 +322,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
         db.close();
     }
 
+    //searches through the database given certain parameters the op is the operator < or > depending on if it is given a 1 or 0
     @SuppressLint("Range")
     public ArrayList<Student> searchDatabase (String u, String f, String l, String m, String g, int op)
     {
@@ -384,6 +387,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
         Cursor cursor = db.rawQuery(selectStatement, null);
 
+        //while there is another record then create a student object of that record and add it to the list
         while(cursor.moveToNext())
         {
             Student s = new Student();

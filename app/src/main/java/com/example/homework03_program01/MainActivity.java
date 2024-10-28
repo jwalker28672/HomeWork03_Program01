@@ -1,3 +1,9 @@
+//======================================================================
+//Author: Jacob Walker
+//Date  : 10/27/2024
+//Desc  : This program is used to keep track of students
+//======================================================================
+
 package com.example.homework03_program01;
 
 import android.content.Intent;
